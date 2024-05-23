@@ -7,6 +7,7 @@ import AVFoundation
 public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProviderDelegate {
     
     static let ACTION_DID_UPDATE_DEVICE_PUSH_TOKEN_VOIP = "com.hiennv.flutter_callkit_incoming.DID_UPDATE_DEVICE_PUSH_TOKEN_VOIP"
+    static let ACTION_CALLER_NAME = "com.hiennv.flutter_callkit_incoming.ACTION_NAME_CALLER"
     
     static let ACTION_CALL_INCOMING = "com.hiennv.flutter_callkit_incoming.ACTION_CALL_INCOMING"
     static let ACTION_CALL_START = "com.hiennv.flutter_callkit_incoming.ACTION_CALL_START"
@@ -36,6 +37,8 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
     private var data: Data?
     private var isFromPushKit: Bool = false
     private let devicePushTokenVoIP = "DevicePushTokenVoIP"
+    // Name caller
+    private let callerNameKey = "CallerNameKey"
 
     private var answerAction: CXAnswerCallAction?
     
@@ -117,6 +120,9 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         case "getDevicePushTokenVoIP":
             result(self.getDevicePushTokenVoIP())
             break;
+        case "getCallerName":
+            result(self.getCallerName())
+            break;
         case "startCallIncoming":
             self.answerAction?.fulfill()
             result("OK")
@@ -133,6 +139,15 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
     
     @objc public func getDevicePushTokenVoIP() -> String {
         return UserDefaults.standard.string(forKey: devicePushTokenVoIP) ?? ""
+    }
+
+    // Name caller
+    @objc public func setCallerName(_ callerName: String) {
+        UserDefaults.standard.set(callerName, forKey: callerNameKey)
+        self.sendEvent(SwiftFlutterCallkitIncomingPlugin.ACTION_CALLER_NAME, ["callerNameKey":callerName])
+    }
+    @objc public func getCallerName() -> String {
+        return UserDefaults.standard.string(forKey: callerNameKey) ?? ""
     }
     
     @objc public func showCallkitIncoming(_ data: Data, fromPushKit: Bool) {
