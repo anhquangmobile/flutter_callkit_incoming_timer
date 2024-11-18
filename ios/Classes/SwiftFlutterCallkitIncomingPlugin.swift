@@ -508,6 +508,9 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         if(self.outgoingCall != nil){
             self.outgoingCall = nil
         }
+        if(self.answerCall != nil){
+            self.answerCall = nil
+        }
         self.answerCall?.endCall()
         self.sendEvent(SwiftFlutterCallkitIncomingPlugin.ACTION_CALL_TOGGLE_AUDIO_SESSION, [ "isActivate": false ])
     }
