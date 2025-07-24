@@ -81,6 +81,12 @@ class FlutterCallkitIncoming {
     return await _channel.invokeMethod("getDevicePushTokenVoIP");
   }
 
+  /// Request permission show notification for Android(14)+
+  /// Only Android: show request permission for ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT
+  static Future requestFullIntentPermission() async {
+    return await _channel.invokeMethod("requestFullIntentPermission");
+  }
+
   /// Start incoming call
   /// On iOS: start connection timer
   /// On Android: not implemented

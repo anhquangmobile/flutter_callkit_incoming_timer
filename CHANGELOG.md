@@ -1,3 +1,7 @@
+## 1.0.3+11
+
+- Update namespace.
+
 ## 1.0.3+10
 
 - Fix RECEIVER_EXPORTED on Android 14.

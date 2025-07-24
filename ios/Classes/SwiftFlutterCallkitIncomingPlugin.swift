@@ -123,6 +123,10 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         case "getCallerName":
             result(self.getCallerName())
             break;
+        // fullscreen intent
+        case "requestFullIntentPermission":
+             result("OK")
+             break
         case "startCallIncoming":
             self.answerAction?.fulfill()
             result("OK")
