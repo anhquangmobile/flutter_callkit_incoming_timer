@@ -206,6 +206,9 @@ class FlutterCallkitIncomingPlugin : FlutterPlugin, MethodCallHandler, ActivityA
                 "getDevicePushTokenVoIP" -> {
                     result.success("")
                 }
+                "requestFullIntentPermission" -> {
+                    callkitNotificationManager?.requestFullIntentPermission(activity)
+                }
             }
         } catch (error: Exception) {
             result.error("error", error.message, "")

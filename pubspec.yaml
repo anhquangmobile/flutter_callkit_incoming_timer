@@ -1,6 +1,6 @@
 name: flutter_callkit_incoming_timer
 description: Flutter Callkit Incoming to show callkit screen in your Flutter app.
-version: 1.0.3+10
+version: 1.0.3+12
 homepage: https://github.com/anhquangmobile/flutter_callkit_incoming_timer
 repository: https://github.com/anhquangmobile/flutter_callkit_incoming_timer
 issue_tracker: https://github.com/anhquangmobile/flutter_callkit_incoming_timer/issues
